@@ -1,0 +1,28 @@
+{%extends 'base.html'%}
+
+{%block content%}
+
+<div class="container my-3">
+    <table class="table">
+        <thead>
+            <tr class="text-center table-dark">
+                <th>번호</th>
+                <th style="width: 70%;">What you want?</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if recommend_list %}
+            {%for recommend in recommend_list%}
+            <tr class="text-center">
+                <td>{{ forloop.counter0|add:1 }}</td>
+                </td>
+                <td class="text-center">
+                    <a href="{%url 'detail' recommend.id%}">{{recommend.recommend_name}}</a>
+                </td>
+            </tr>
+            {%endfor%}
+            {%endif%}
+        </tbody>
+    </table>
+   
+{%endblock%}
