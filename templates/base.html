@@ -4,18 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport", content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <!--Bootstrap CSS-->
-    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
     <!--apps CSS-->
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
     <title>어제보다 더 나은 오늘, TODAYS</title>
 </head>
 <body>
-    {%include "navbar.html"%}
     {%block content%}
     {%endblock%}
-    <script src="{% static 'jquery-3.7.1.min.js' %}"></script>
-    <script src="{% static 'bootstrap.min.js' %}"></script>
+
     {%block script%}
     {%endblock%}
 </body>

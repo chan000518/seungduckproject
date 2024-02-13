@@ -2,21 +2,21 @@
 
 {%block content%}
 
-<div class="container my-3">
-    <table class="table">
+<div>
+    <table>
         <thead>
-            <tr class="text-center table-dark">
+            <tr>
                 <th>번호</th>
-                <th style="width: 70%;">What you want?</th>
+                <th>What you want?</th>
             </tr>
         </thead>
         <tbody>
             {% if recommend_list %}
             {%for recommend in recommend_list%}
-            <tr class="text-center">
+            <tr>
                 <td>{{ forloop.counter0|add:1 }}</td>
                 </td>
-                <td class="text-center">
+                <td>
                     <a href="{%url 'detail' recommend.id%}">{{recommend.recommend_name}}</a>
                 </td>
             </tr>

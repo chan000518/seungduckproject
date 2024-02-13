@@ -16,3 +16,4 @@ def detail(request, recommend_id):
     recommend = get_object_or_404(Recommend, pk=recommend_id)
     context = {'recommend': recommend}
     return render(request, 'Todays/recommend_detail.html', context)
+    
