@@ -15,5 +15,15 @@ def home(request):
 def detail(request, recommend_id):
     recommend = get_object_or_404(Recommend, pk=recommend_id)
     context = {'recommend': recommend}
-    return render(request, 'Todays/recommend_detail.html', context)
+    if (recommend_id == 1):
+        return render(request, 'Todays/fortune.html', context)
+    elif (recommend_id == 2):
+        return render(request, 'Todays/weather.html', context)
+    elif (recommend_id == 3):
+        return render(request, 'Todays/music.html', context)
+    elif (recommend_id == 4):
+        return render(request, 'Todays/food.html', context)
+    else:
+        return render(request, 'Todays/famous_saying.html', context)
+    
     
