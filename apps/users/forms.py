@@ -6,12 +6,13 @@ from .models import User
 class userCreate(UserCreationForm):
     class Meta:
         model = get_user_model()
-        fields = ('username', 'name')
+        fields = ('username', 'name', 'birth')
     
     def __init__(self, *args, **kwargs):
         super(userCreate, self).__init__(*args, **kwargs)
         self.fields['username'].label = '아이디'
         self.fields['name'].label = '유저명'
+        self.fields['birth'].label = '생일'
 
 class userChange(UserChangeForm):
     class Meta(UserChangeForm.Meta):
