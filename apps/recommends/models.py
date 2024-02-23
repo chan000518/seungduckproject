@@ -10,7 +10,7 @@ class Recommend(models.Model):      # 운ㅅㅔ, 날 씨 , ㅇㅇㅇㅇ
 
 class RecommendPost(models.Model):
     recommend_kind = models.ForeignKey(Recommend, on_delete = models.CASCADE, related_name='recommend')
+    
     content = models.TextField()
     # user 
     # date
-    

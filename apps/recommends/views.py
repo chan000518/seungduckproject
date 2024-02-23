@@ -20,8 +20,6 @@ def detail(request, recommend_id):
     if recommend_p.kind == "운세":
         recommend_p.content = scrapping_pottun()
         recommend_p.save()
-    elif
-    elf
-    context = {'recommend': recommend}
+    # elif:
+    #     context = {'recommend': recommend}
     return render(request, 'Todays/recommend_detail.html', context)
-
