@@ -1,0 +1,36 @@
+.col{
+    display: flex;
+    flex-direction: column;
+}
+.main_box{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+}
+.left{
+    border: 3px solid #FFAF1C;
+    border-radius: 15px;
+    width: 48%;
+    min-height: 100%;
+}
+
+@media (max-width: 600px) {
+    .left {
+      display: none;
+    }
+  }
+
+.right{
+    border-radius: 15px;
+    border: 3px solid #FFAF1C;
+    width: 48%;
+    min-height: 100%;
+    text-align: center;
+}
+@media (max-width: 600px) {
+    .right {
+        width: 100%;
+    }
+  }

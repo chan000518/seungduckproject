@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport", content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <!--apps CSS-->
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-    <link rel="stylesheet" href="{% static 'reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
     {%block head%}
     
     {%endblock%}
@@ -16,13 +16,27 @@
         <a href = "/"><div class="logo"><img src="{% static 'logo.jpg' %}"></div></a>
         <nav class="base_nav">
             <ul>
-                
+                <li>
+                    {% if user.is_authenticated %}
+                    <a class="" href="{% url 'users:logout'%}">로그아웃</a>
+                    {% else %}
+                    <a class="" href="{% url 'users:login'%}">로그인</a>
+                    <a class="" href="{% url 'users:signup'%}">회원가입</a>
+                    {% endif %}
+                </li>
             </ul>
         </nav>
     </header>
-    {%block content%}
-    
-    {%endblock%}
+    <div class="center">
+        <main class="main_container">
+            {%block content%}
+            
+            {%endblock%}
+        </main>
+    </div>
+    <footer>
+
+    </footer>
 </body>
 {%block script%}
 {%endblock%}

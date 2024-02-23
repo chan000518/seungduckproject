@@ -1,13 +1,14 @@
-from django.db import models
-
-# Create your models here.
 from django.shortcuts import render, redirect
 from django.contrib import auth
 from .forms import CustomUserChangeForm
 from .forms import userCreate
 from django.contrib.auth.forms import AuthenticationForm
 from .models import *
-# Create your views here.
+
+def main(request):
+    if request.user.is_anonymous:
+        return render(request, 'main.html')
+    return render(request, 'main.html')
 
 # 유저 프로필 페이지
 def user_detail(request):
@@ -86,9 +87,3 @@ def logout(request):
     auth.logout(request)
     return redirect('users:main')
 
-def main (request):
-    users = User.objects.all()
-    ctx = {
-        'users' : users
-    }
-    return render(request, 'users/user_main.html', ctx)
