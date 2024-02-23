@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+<title>main page</title>
+{% endblock %} {% block content %}
+<div class="main_container">
+  <div class="main_box">
+    <div class="main_deco">
+      <img class="deco_img ani_1" src="{%static 'image/card2.png' %}" />
+      <img class="deco_img ani_2" src="{%static 'image/card2.png' %}" />
+      <img class="deco_img ani_3" src="{%static 'image/card2.png' %}" />
+      <img class="deco_img ani_4" src="{%static 'image/card2.png' %}" />
+      <img class="deco_img ani_5" src="{%static 'image/card2.png' %}" />
+    </div>
+    <div class="main_info">
+      <p>전세계 피로그래머와</p>
+      <p>한 판 승부 숫자카드게임</p>
+      {% if user.is_authenticated %}
+      <a class="button" href="{% url 'games:attack'%}"> 게임하기</a>
+      {% else %}
+      <a class="button"  href="{% url 'users:login'%}"> 게임하기</a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

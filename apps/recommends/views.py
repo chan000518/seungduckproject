@@ -3,9 +3,12 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
-from .models import Recommend
+from .models import *
 from .forms import RecommendForm, PostForm
 
+def scrapping_pottun():
+    #스크래핑
+    return g
 # Create your views here.
 def home(request):
     recommend_list = Recommend.objects.all()

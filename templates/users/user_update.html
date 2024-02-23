@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block head %}
+    <title>user update</title>
+    <style>
+        .update-form {
+            width: 40%;
+            margin: 60px auto;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .update-form form{
+            text-align: left;
+        }
+
+        .update-form button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .update-form button:hover {
+            opacity: 0.9;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="update-form">
+        <h1>회원정보 수정</h1>
+        <form method="post" action="{% url 'users:user_update' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">정보 수정하기</button>
+        </form>
+    </div>
+{% endblock %}

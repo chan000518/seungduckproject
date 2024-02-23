@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+<title>login</title>
+
+{% endblock %} {% block content %}
+<div class="box">
+  <h1>로그인</h1>
+  <form method="POST" action="{% url 'users:login' %}">
+    {% csrf_token %} {{ form.as_p }}
+    <button type="submit" class="btn">로그인</button>
+  </form>
+  {% comment %} 
+  <a href="{% url 'social:begin' 'naver' %}" class="naver-login-button">
+    <img src="{%static 'image/naver.ico'%}"/>
+  </a>
+  <a href="{% provider_login_url 'google' %}">
+    <img src="{%static 'image/google.png'%}" style="width: 32px;"/>
+  </a>
+  <a href="{% provider_login_url 'kakao' %}">
+    <img src="{%static 'image/kakao.png'%}" style="width: 32px;"/>
+  </a>
+  {% endcomment %}
+</div>
+{% endblock %}

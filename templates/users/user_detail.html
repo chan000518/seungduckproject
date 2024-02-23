@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block head %}
+    <title>user detail</title>
+    <style>
+        .btns{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn-danger {
+            background-color: #f44336; /* '탈퇴하기' 버튼 배경색 */
+        }
+        .btn:hover {
+            opacity: 0.9; /* 버튼 호버 효과 */
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<div class="box">
+    <h1>회원정보</h1>
+    <p class="user-name"><strong>아이디:</strong> {{ user.username }}</p>
+    <p class="name"><strong>이름:</strong> {{ user.name }}</p>
+    <p class="score"><strong>생일</strong> {{ user.birth }}점</p>
+    <div class="btns">
+        <a href="{% url 'users:user_update' %}" class="btn">프로필 수정하기</a>
+        <form action="{% url 'users:user_delete' %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">탈퇴하기</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

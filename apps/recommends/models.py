@@ -3,7 +3,6 @@ from django.contrib.auth.models import User   # 로그인 유저들(생일이 �
 
 class Recommend(models.Model):
     recommend_name = models.CharField(max_length = 10)
-
     def __str__(self):
         return self.recommend_name
 

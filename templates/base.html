@@ -5,14 +5,25 @@
     <meta charset="UTF-8">
     <meta name="viewport", content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <!--apps CSS-->
-    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
-    <title>어제보다 더 나은 오늘, TODAYS</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'reset.css' %}">
+    {%block head%}
+    
+    {%endblock%}
 </head>
 <body>
+    <header class="header">
+        <a href = "/"><div class="logo"><img src="{% static 'logo.jpg' %}"></div></a>
+        <nav class="base_nav">
+            <ul>
+                
+            </ul>
+        </nav>
+    </header>
     {%block content%}
-    {%endblock%}
-
-    {%block script%}
+    
     {%endblock%}
 </body>
+{%block script%}
+{%endblock%}
 </html>
