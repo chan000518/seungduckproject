@@ -5,6 +5,6 @@ from apps.recommends import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('apps.recommends.urls')),
-    path('', include('apps.users.urls') ),
-    
+    path('', include('users.urls') ),
+    path('foods/', include('apps.foods.urls') )   
 ]
