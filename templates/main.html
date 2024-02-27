@@ -18,8 +18,10 @@
                 <span>{{user_food.names}}</span>
                 {% else %}
                 <span class="">오늘의 음식</span>
+                
                 <a class="" href="{% url 'users:login'%}">로그인이 필요한 서비스입니다</a>
                 {% endif %}
+                <a class="" href="{% url 'soccers:detail'%}">오늘의 해외축구 일정</a>
             </li>
         </ul>
     </div>

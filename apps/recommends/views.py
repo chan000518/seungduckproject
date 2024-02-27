@@ -9,6 +9,7 @@ from .forms import RecommendForm, PostForm
 def scrapping_pottun():
     #스크래핑
     return g
+
 # Create your views here.
 def home(request):
     recommend_list = Recommend.objects.all()
