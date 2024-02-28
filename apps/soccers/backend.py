@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup as bs
 from datetime import date
 from .models import Soccer
 
-
 date = date.today().strftime('%Y%m%d')          # 날짜 형식에 '-'는 없어야 하므로
 
 def create_soccer_schedule():
