@@ -27,6 +27,10 @@ def food_detail(request):
         food = Food.objects.get(user=request.user)
     except Food.DoesNotExist:
         food = food_create(request.user)
+    except Food.MultipleObjectsReturned:
+        food = Food.objects.filter(user=request.user)[0]
+        Food.objects.filter(user=request.user)[1].delete()
+    
 
     if food.date == date.today():
         if food.names == '':
