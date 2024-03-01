@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps.recommends',
     'apps.foods',
+    'apps.soccers',
     'users',
 ]
 
