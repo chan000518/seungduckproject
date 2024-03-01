@@ -1,5 +1,6 @@
 .col{
     display: flex;
+    gap : 10px;
     flex-direction: column;
 }
 .main_box{
@@ -34,3 +35,8 @@
         width: 100%;
     }
   }
+
+.Today{
+    padding-top: 30px;
+    gap: 20px;
+}

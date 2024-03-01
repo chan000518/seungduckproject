@@ -7,6 +7,7 @@ urlpatterns = [
     path('', include('apps.recommends.urls')),
     path('', include('users.urls') ),
     path('foods/', include('apps.foods.urls') ),
+    path('lucks/', include('apps.lucks.urls') ),
     path('weather/', include('apps.weather.urls') ),
     path('soccers/', include('apps.soccers.urls') ),
 ]
