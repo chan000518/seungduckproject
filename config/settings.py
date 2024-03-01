@@ -15,6 +15,7 @@ from pathlib import Path
 from decouple import config
 
 OPENAI_API_KEY = config('OPENAI_API_KEY')
+WEATHER_API_KEY = config('WEATHER_API_KEY')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -46,6 +47,7 @@ INSTALLED_APPS = [
     'apps.recommends',
     'apps.foods',
     'apps.soccers',
+    'apps.weather',
     'users',
 ]
 

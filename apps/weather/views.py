@@ -1,3 +1,5 @@
 from django.shortcuts import render
+from .models import Weather
 
-# Create your views here.
+def weather_detail(request):
+    print(3)
