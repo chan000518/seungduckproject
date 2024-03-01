@@ -8,4 +8,4 @@ def soccer_detail(request):
     ctx = {
         'schedule_list' : schedule_list
     }
-    return render(request, 'soccers/soccer_detail.html', ctx)
+    return render(request, 'Todays/soccer_detail.html', ctx)
