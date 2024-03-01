@@ -1,0 +1,16 @@
+{%extends 'base.html'%}
+
+{%block content%}
+<div>
+    {% if schedule_list %}
+    {%for soccer in schedule_list%}
+        <p>{{soccer.league}}</p>
+        <p>{{soccer.time}}</p>
+        <p>{{soccer.hometeam}} vs {{soccer.awayteam}}</p>
+    {%endfor%}
+    {%else%}
+        <p>오늘 해외축구 경기 일정이 없습니다.</p>
+    {%endif%}
+</div>
+
+{%endblock%}

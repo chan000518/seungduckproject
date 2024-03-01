@@ -4,13 +4,15 @@ import openai
 from datetime import date
 # from apps.weather.models import Weather 
 
-System_Role="""음식을 주어진 날짜와 날씨를 기반해 추천하고 간단한 음식 설명과 추천 이유를 설명
-                 3개의 음식을 추천하고 먼저 음식이름들을 []안에 ,로 구분하여 말해 ex) [삼계탕,불고기,스파게티]"""
+System_Role="""넌 사주팔자 운세를 보는 사람이야 내 생일과 이름, 오늘 날짜를 기반으로 오늘의 운세를 봐줘
+    먼저 오늘의 운세를 한단어로 표현해줘 ex) [만전지책] 그 다음 설명을 해줘"""
     
 # 인자 user --> user에 해당하는 
-def food_by_gpt_api(user):
-    weather = "흐림" # Weather.objects.get(user = user).status
-    Prompt =f"오늘은 {date.today()}이고, 오늘의 날씨는 {weather}입니다. 오늘 음식 메뉴를 추천해"
+def luck_by_gpt_api(user):
+    
+    weather = "맑음" # Weather.objects.get(user = user).status
+    
+    Prompt =f"오늘은 {date.today()}, 날씨는 {weather} 태어난 날은 {user.birth} 이름은 {user.name}. 오늘 운세를 알려줘"
     openai.api_key = OPENAI_API_KEY
     print('???')
     try:
@@ -25,14 +27,13 @@ def food_by_gpt_api(user):
         )   
         return response.choices[0].message.content
     except Exception:
-        print('dk   ')
         return ''
     
-def food_names_from(text):
+def luck_names_from(text):
     start = text.find('[') + 1  
     end = text.find(']', start)  
     if start > 0 and end > start:
-        food_names = text[start:end]
-        return food_names
+        luck_names = text[start:end]
+        return luck_names
     else:
         return ""

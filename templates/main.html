@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block head %}
-<title>main page</title>
+<title>더 나은 오늘을 위해</title>
 <link rel="stylesheet" href="{% static 'css/main.css' %}">
 {% endblock %} 
 {% block content %}
@@ -11,15 +11,34 @@
 
     </div>
     <div class="right">
-        <ul class="col">
+        <ul class="col Today">
             <li class="col">
                 {% if user.is_authenticated %}
-                <a class="" href="{% url 'foods:detail'%}">오늘의 음식</a>
-                <span>{{user_food.names}}</span>
+                <a class="" href="{% url 'foods:detail'%}"><i class="fa-solid fa-bowl-food"></i> 오늘의 음식 <i class="fa-solid fa-bowl-food"></i> </a>
+                {% for food in user.food.all %}
+                    <span>{{food.names}}</span>
+                {% endfor %}
                 {% else %}
                 <span class="">오늘의 음식</span>
+                
                 <a class="" href="{% url 'users:login'%}">로그인이 필요한 서비스입니다</a>
-                {% endif %}
+                {% endif %} 
+            </li>
+            <li class="col">
+                <a class="" href="{% url 'soccers:detail'%}"><i class="fa-solid fa-futbol"></i> 오늘의 해외축구 일정 <i class="fa-solid fa-futbol"></i></a>
+            </li>
+            
+            <li class="col">
+                {% if user.is_authenticated %}
+                <a class="" href="{% url 'lucks:detail'%}"><i class="fa-solid fa-clover"></i> 오늘의 운세 <i class="fa-solid fa-clover"></i> </a>
+                {% for luck in user.luck.all %}
+                    <span>{{luck.names}}</span>
+                {% endfor %}
+                {% else %}
+                <span class="">오늘의 운세</span>
+                
+                <a class="" href="{% url 'users:login'%}">로그인이 필요한 서비스입니다</a>
+                {% endif %} 
             </li>
         </ul>
     </div>
