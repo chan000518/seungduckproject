@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+<title>더 나은 오늘을 위해-오늘의 날씨-</title>
+<link rel="stylesheet" href="{% static 'css/weather.css' %}">
+{% endblock %} 
+{% block content %}
+<div class="main_box">
+    <h1>{{weather.temp}}</h1>
+    <p>{{weather.time}}</p>
+    <p>{{weather.rain}}</p>
+    <p>{{weather.rain_p}}</p>
+    <p>{{weather.sky}}</p>
+</div>
+{% endblock %}

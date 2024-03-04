@@ -33,8 +33,9 @@ def luck_detail(request):
 
     if luck.date == date.today():
         if luck.names == '':
+            luck = luck_update(luck)
             ctx = {
-            'luck' : luck_update(luck),
+            'luck' : luck,
             }    
         else:
             ctx = {

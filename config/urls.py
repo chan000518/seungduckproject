@@ -8,6 +8,6 @@ urlpatterns = [
     path('', include('users.urls') ),
     path('foods/', include('apps.foods.urls') ),
     path('lucks/', include('apps.lucks.urls') ),
-    path('weather/', include('apps.weather.urls') ),
+    path('weathers/', include('apps.weathers.urls') ),
     path('soccers/', include('apps.soccers.urls') ),
 ]

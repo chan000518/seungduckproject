@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'apps.foods',
     'apps.lucks',
     'apps.soccers',
-    'apps.weather',
+    'apps.weathers',
     'users',
 ]
 

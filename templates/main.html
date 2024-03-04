@@ -40,6 +40,19 @@
                 <a class="" href="{% url 'users:login'%}">로그인이 필요한 서비스입니다</a>
                 {% endif %} 
             </li>
+
+            <li class="col">
+                <!--{% if user.is_authenticated %}-->
+                <a class="" href="{% url 'weathers:detail'%}"><i class="fa-solid fa-clover"></i> 오늘의 날씨 <i class="fa-solid fa-clover"></i> </a>
+                {% for weather in user.weather.all %}
+                    <span>{{weather.sky}}</span>
+                <!--{% endfor %}
+                {% else %}
+                <span class="">오늘의 날씨</span>
+                
+                <a class="" href="{% url 'users:login'%}">로그인이 필요한 서비스입니다</a>
+                {% endif %} -->
+            </li>
         </ul>
     </div>
 </div>

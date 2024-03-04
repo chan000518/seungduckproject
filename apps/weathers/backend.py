@@ -4,9 +4,8 @@ import json
 from datetime import date, datetime, timedelta
 from .models import Weather
 from .mapToGrid import mapToGrid
+import math
 
-# 단기예보 정보를 조회하기 위해 발표일자, 발표시각, 예보지점 X좌표, 예보지점 Y 좌표의 조회 조건으로 발표일자, 발표시각, 자료구분문자, 예보 값, 예보일자, 예보시각, 예보지점 X 좌표, 예보지점 Y 좌표의 정보를 조회하는 기능
-# nx : 예보지점의 x좌표값, ny : 예보지점의 y좌표값
 def get_weather():
 
     nx, ny = get_nx_ny()
@@ -42,46 +41,42 @@ def get_weather():
         base_time = "2300"
         base_date = today
 
+    # basetime을 2000으로 하면 21시, 22시, 23시, 00시, 01시가 나옴
     response = requests.get(f'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey={WEATHER_API_KEY}&pageNo=1&numOfRows=60&dataType=json&base_date={base_date}&base_time={base_time}&nx={nx}&ny={ny}')
     data = response.json()
-    weather_data = data['body']['items']['item']
+    weather_data = data['response']['body']['items']['item']
+    
+    # 필요한 카테고리
+    # 기온 - "TMP"
+    # 하늘상태: 맑음(1) 구름많은(3) 흐림(4) - "SKY"
+    # 강수 형태 - 없음(0), 비(1), 비/눈(2), 눈(3), 소나기(4) - "PTY"
+    # 강수 확률 - "POP"
+    categories = ["TMP", "SKY", "PTY", "POP"]       
 
-    # basetime을 2000으로 하면 21시, 22시, 23시, 00시, 01시가 나옴
-    for item in weather_data:
-        if item['category'] == 'TMP':        # 기온
-            Weather.temp = item['fcstValue']
-        # 하늘상태: 맑음(1) 구름많은(3) 흐림(4)
-        if item['category'] == 'SKY':
-            if item['fcstValue'] == 1:
-                Weather.sky = "맑음"
-            elif item['fcstValue'] == 3:
-                Weather.sky = "구름많음"
-            else:
-                Weather.sky = "흐림"
-        # 강수 형태 - 없음(0), 비(1), 비/눈(2), 눈(3), 소나기(4) 
-        if item['category'] == 'PTY':
-            if item['fcstValue'] == 0:
-                Weather.rain == "강수 없음"
-            elif item['fcstValue'] == 1:
-                Weather.rain == "비"
-            elif item['fcstValue'] == 2:
-                Weather.rain == "비/눈"
-            elif item['fcstValue'] == 3:
-                Weather.rain == "눈"
-            else:
-                Weather.rain == "소나기"
-        # 강수 확률
-        if item['category'] == 'POP':
-            Weather.rain_p == item['fcstValue']
+    weather_dict = {}       # weather 딕셔너리 생성
+
+    # 동일한 fcstTime을 기준으로 데이터를 반복하여 딕셔너리에 추가
+    for data in weather_data:
+        fcst_time = data["fcstTime"]
+        category = data["category"]
+        value = data["fcstValue"]
+    
+        # 선택한 카테고리에 해당하는 데이터만 딕셔너리에 추가
+        if category in categories:
+            if fcst_time not in weather_dict:
+                weather_dict[fcst_time] = {}
+            weather_dict[fcst_time][category] = value
+
+    return weather_dict
 
 def get_nx_ny():
     response = requests.get("http://www.geoplugin.net/json.gp")     # 현재 IP로 현 위치의 위도 경도를 얻을 수 있는 API 
-
+    
     if (response.status_code != 200):
         print("현재 좌표를 불러올 수 없음")
     else:
-        location = json.loads(response.text)
+        location = response.json()
         # mapToGrid 함수로 받아 온 위도, 경도를 nx, ny로 변환
-        nx, ny = mapToGrid(location["geoplugin_latitude"], location["geoplugin_longitude"])
+        nx, ny = mapToGrid(float(location["geoplugin_latitude"]), float(location["geoplugin_longitude"]))
 
     return nx, ny
