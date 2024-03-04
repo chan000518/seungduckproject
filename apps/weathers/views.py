@@ -35,10 +35,10 @@ def weather_create():
 
 #    return weather
 
-def weather_detail(request):
+def weather_detail(request):        # 아직 미완입니다.
     if Weather.objects.exists():
         # 이미 모델이 생성되어 있는 경우, 기존 모델을 반환
-        weather = Weather.objects.get(user=request.user)        # 리그 순으로 정렬
+        weather = Weather.objects.get(user=request.user)     
     else:
         weather = weather_create()
     

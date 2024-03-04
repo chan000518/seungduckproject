@@ -8,7 +8,7 @@ import math
 
 def get_weather():
 
-    nx, ny = get_nx_ny()
+    nx, ny = get_nx_ny()        #nx, ny 반환
     now = datetime.now()
     today = date.today().strftime("%Y%m%d")
     yesterday = (now - timedelta(days=1)).strftime("%Y%m%d")
