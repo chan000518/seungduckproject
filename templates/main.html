@@ -45,7 +45,7 @@
                 <!--{% if user.is_authenticated %}-->
                 <a class="" href="{% url 'weathers:detail'%}"><i class="fa-solid fa-clover"></i> 오늘의 날씨 <i class="fa-solid fa-clover"></i> </a>
                 {% for weather in user.weather.all %}
-                    <span>{{weather.sky}}</span>
+                    <span>@현재 시간 기준 5시간 동안의 날씨를 제공합니다@</span>
                 <!--{% endfor %}
                 {% else %}
                 <span class="">오늘의 날씨</span>

@@ -7,10 +7,38 @@
 {% endblock %} 
 {% block content %}
 <div class="main_box">
-    <h1>{{weather.temp}}</h1>
-    <p>{{weather.time}}</p>
-    <p>{{weather.rain}}</p>
-    <p>{{weather.rain_p}}</p>
-    <p>{{weather.sky}}</p>
+    {% if weather_data %}
+    <div class="weather_container">
+    {% for weather in weather_data %}
+        <div class="weather_group">
+        <h1>기온 : {{weather.temperature}}&#8451;</h1>
+        <p>시간 : {{weather.time}}</p>
+        {% if weather.rain == 0 %}   <!--강수 형태 코드가 0이면 비가 안온다는 뜻-->
+            {% if weather.sky == 1 %}
+                <p>하늘 : 맑음</p>
+            {% elif weather.sky == 3 %}
+                <p>하늘 : 구름많음</p>
+            {% else %}
+                <p>하늘 : 흐림</p>
+            {% endif %}
+        {% elif weather.rain == 1 %}
+            <p>강수 형태 : 비</p>
+            <p>강수 확률 : {{weather.rain_p}}%</p>
+        {% elif weather.rain == 2 %}
+            <p>강수 형태 : 비/눈</p>
+            <p>강수 확률 : {{weather.rain_p}}%</p>
+        {% elif weather.rain == 3 %}
+            <p>강수 형태 : 눈</p>
+            <p>강수 확률 : {{weather.rain_p}}%</p>
+        {% else %}
+            <p>강수 형태 : 소나기</p>
+            <p>강수 확률 : {{weather.rain_p}}%</p>
+        {% endif %}
+    {% endfor %}
+    </div>
+    {% else %}
+        <p>현재 날씨 정보를 점검 중입니다.</p>
+    {% endif %}
+    </div>
 </div>
 {% endblock %}

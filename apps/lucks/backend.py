@@ -15,17 +15,7 @@ def luck_by_gpt_api(user):
     Prompt =f"오늘은 {date.today()}, 날씨는 {weather} 태어난 날은 {user.birth} 이름은 {user.name}. 오늘 운세를 알려줘"
     openai.api_key = OPENAI_API_KEY
     print('???')
-    response = openai.chat.completions.create(
-        model="gpt-3.5-turbo",
-        messages=[
-        {"role": "system", "content": System_Role},
-        {"role": "user", "content": Prompt},
-        ],
-        max_tokens = 500,
-        temperature = 0.9
-    )   
-    return response.choices[0].message.content
-
+     
     
 def luck_names_from(text):
     start = text.find('[') + 1  

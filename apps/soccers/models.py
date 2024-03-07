@@ -1,8 +1,5 @@
-# user 필요 시
-# from users.models import User
-
 from django.db import models
-#from datetime import date
+from datetime import date
 
 # Create your models here.
 class Soccer(models.Model):
@@ -23,4 +20,4 @@ class Soccer(models.Model):
     def __str__(self):
         return self.time
     def __str__(self):
-        return self.date        # == date.today()
+        return self.date == date.today()

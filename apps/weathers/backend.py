@@ -42,8 +42,9 @@ def get_weather():
         base_date = today
 
     # basetime을 2000으로 하면 21시, 22시, 23시, 00시, 01시가 나옴
-    response = requests.get(f'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey={WEATHER_API_KEY}&pageNo=1&numOfRows=60&dataType=json&base_date={base_date}&base_time={base_time}&nx={nx}&ny={ny}')
+    response = requests.get(f'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey={WEATHER_API_KEY}&pageNo=1&numOfRows=120&dataType=json&base_date={base_date}&base_time={base_time}&nx={nx}&ny={ny}')
     data = response.json()
+    
     weather_data = data['response']['body']['items']['item']
     
     # 필요한 카테고리
@@ -55,22 +56,21 @@ def get_weather():
 
     weather_dict = {}       # weather 딕셔너리 생성
 
-    # 동일한 fcstTime을 기준으로 데이터를 반복하여 딕셔너리에 추가
     for data in weather_data:
         fcst_time = data["fcstTime"]
         category = data["category"]
         value = data["fcstValue"]
-    
+
         # 선택한 카테고리에 해당하는 데이터만 딕셔너리에 추가
         if category in categories:
             if fcst_time not in weather_dict:
                 weather_dict[fcst_time] = {}
             weather_dict[fcst_time][category] = value
-
-    return weather_dict
+    
+    return weather_dict     # 딕셔너리 형태로 반환 -> views.py에서 쓰임
 
 def get_nx_ny():
-    response = requests.get("http://www.geoplugin.net/json.gp")     # 현재 IP로 현 위치의 위도 경도를 얻을 수 있는 API 
+    response = requests.get( "http://www.geoplugin.net/json.gp")     # 현재 IP로 현 위치의 위도 경도를 얻을 수 있는 API 
     
     if (response.status_code != 200):
         print("현재 좌표를 불러올 수 없음")
